@@ -20,3 +20,13 @@ segmentation = seg(media)
 for segment in segmentation:
     if segment[0] == 'music':
         print(str(segment[1]) + " to " + str(segment[2]))
+
+# coalesce close segments (<10s from end of one to start of next)
+
+# adjust timestamps (add 5s to beginning and subtract 2s from end)
+
+# segment
+
+# remove music segments (>20s <45s ?)
+
+# reassemble and write output file
