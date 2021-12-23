@@ -1,5 +1,5 @@
 from inaSpeechSegmenter import Segmenter
-from inaSpeechSegmenter.export_funcs import seg2csv, seg2textgrid
+##from inaSpeechSegmenter.export_funcs import seg2csv, seg2textgrid
 
 from pydub import AudioSegment
 
@@ -9,10 +9,10 @@ media_file = './gaiman.mp3'
 # create an instance of speech segmenter
 # this loads neural networks and may last few seconds
 # Warnings have no incidence on the results
-###seg = Segmenter(detect_gender=False, vad_engine='smn')
+seg = Segmenter(detect_gender=False, vad_engine='smn')
 
 # segmentation is performed using the __call__ method of the segmenter instance
-###segs = seg(media_file)
+segs = seg(media_file)
 
 # the result is a list of tuples
 # each tuple contains:
@@ -21,7 +21,7 @@ media_file = './gaiman.mp3'
 # * end time of the segment
 
 # Dummy data while working on algorithm as proper segmentation is very slow
-segs = [
+""" segs = [
 ('music', 0.0, 1.32),
 ('music', 27.0, 43.78),
 ('speech', 43.78, 283.32),
@@ -39,7 +39,7 @@ segs = [
 ('music', 2037.04, 2044.9),
 ('music', 2045.54, 2046.46),
 ('music', 2094.14, 2096.46)
-]
+] """
 
 print(f'Original: {segs}')
 
@@ -68,7 +68,7 @@ new_segs += [(start, end), ]
 print(f'Coalesced: {new_segs}')
 
 
-# Find real music segments (>20s <45s ?)
+# Find real music segments (>20s <45s)
 music_segs = []
 for segment in new_segs:
     if ((segment[1] - segment[0]) > 20) and ((segment[1] - segment[0]) < 45):
