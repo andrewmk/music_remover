@@ -1,7 +1,10 @@
 from inaSpeechSegmenter import Segmenter
 from inaSpeechSegmenter.export_funcs import seg2csv, seg2textgrid
 
-media = './gaiman.mp3'
+from pydub import AudioSegment
+
+
+media_file = './gaiman.mp3'
 
 # create an instance of speech segmenter
 # this loads neural networks and may last few seconds
@@ -9,7 +12,7 @@ media = './gaiman.mp3'
 ###seg = Segmenter(detect_gender=False, vad_engine='smn')
 
 # segmentation is performed using the __call__ method of the segmenter instance
-###segs = seg(media)
+###segs = seg(media_file)
 
 # the result is a list of tuples
 # each tuple contains:
@@ -81,8 +84,23 @@ for segment in music_segs:
 print(f'Adjusted: {adj_segs}')
 
 
-# segment track
 
-# remove music segments
+# Assemble and write output file - timestamps in milliseconds
 
-# reassemble and write output file
+track = AudioSegment.from_mp3(media_file)
+edited = AudioSegment.empty()
+
+# Speech up to start of first music segment
+edited += track[0:1000 * adj_segs[0][0]]
+
+# Intermediate speech segments
+seg = 0
+while seg < (len(adj_segs) - 1):
+    edited += track[1000 * adj_segs[seg][1]:1000 * adj_segs[seg + 1][0]]
+    seg += 1
+
+# Speech from end of last music segment to end
+edited += track[1000 * adj_segs[seg][1]:]
+
+# Write to file
+edited.export("edited.mp3", format="mp3")
