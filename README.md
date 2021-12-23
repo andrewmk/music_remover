@@ -1,6 +1,6 @@
 # music_remover
 
-Remove music segments from an audio file. Takes about 2 minutes on an 'Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz' for a 35 minute audio file.
+Remove 30 second music segments from an audio file (Desert Island Discs, I'm looking at you...). Takes about 2 minutes on an 'Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz' for a 35 minute audio file.
 
 # Requirements
 
