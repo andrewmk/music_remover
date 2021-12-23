@@ -17,7 +17,7 @@ media = './gaiman.mp3'
 # * start time of the segment
 # * end time of the segment
 
-# Dummy data while working on alogorithm as proper segmentation is very slow
+# Dummy data while working on algorithm as proper segmentation is very slow
 segs = [
 ('music', 0.0, 1.32),
 ('music', 27.0, 43.78),
