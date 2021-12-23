@@ -1,8 +1,9 @@
 from inaSpeechSegmenter import Segmenter
 from pydub import AudioSegment
+from sys import argv
 
 
-media_file = './gaiman.mp3'
+media_file = argv[1]
 
 # create an instance of speech segmenter
 # this loads neural networks and may last few seconds
