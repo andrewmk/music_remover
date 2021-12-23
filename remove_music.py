@@ -1,6 +1,4 @@
 from inaSpeechSegmenter import Segmenter
-##from inaSpeechSegmenter.export_funcs import seg2csv, seg2textgrid
-
 from pydub import AudioSegment
 
 
