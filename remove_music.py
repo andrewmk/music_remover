@@ -40,7 +40,7 @@ segs = [
 
 print(f'Original: {segs}')
 
-# Filter for just music segments
+# Filter for just segments labelled 'music'
 music_segs = []
 for segment in segs:
     if segment[0] == 'music':
@@ -65,10 +65,24 @@ new_segs += [(start, end), ]
 print(f'Coalesced: {new_segs}')
 
 
+# Find real music segments (>20s <45s ?)
+music_segs = []
+for segment in new_segs:
+    if ((segment[1] - segment[0]) > 20) and ((segment[1] - segment[0]) < 45):
+        music_segs += [(segment[0], segment[1]), ]
+
+print(f'Real music: {new_segs}')
+
 # adjust timestamps (add 5s to beginning and subtract 2s from end)
+adj_segs = []
+for segment in music_segs:
+    adj_segs += [(segment[0] + 5, segment[1] - 2), ]
 
-# segment
+print(f'Adjusted: {adj_segs}')
 
-# remove music segments (>20s <45s ?)
+
+# segment track
+
+# remove music segments
 
 # reassemble and write output file
